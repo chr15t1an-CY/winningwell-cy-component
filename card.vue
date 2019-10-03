@@ -55,25 +55,6 @@
 <!-- lang='es6' is important. Please include -->
 <script lang='es6'>
 
-(function(g) {
-    var ns, script, first;
-    ns = 'Conveyour';
-    g[ns] = g[ns] || {};
-    g[ns].config = {
-      domain: '',
-      appkey: '',
-      token: ''
-    };
-    g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
-    g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
-    script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
-    first = document.getElementsByTagName('script')[0];
-    first.parentNode.insertBefore(script, first);
-  })(window);
-
   //your code should be exported using the module.exports object
   module.exports = {
 
@@ -96,11 +77,7 @@
         fullName : [
           this.ctx.learner.first_name,
           this.ctx.learner.first_name
-        ].join(' '),
-        trigger_name : ctx.trigger.name,
-        finished : ctx.completion_state.finished,
-        totalScore: 0,
-        userEmail:'',
+        ].join(' ')
       }
     },
 
