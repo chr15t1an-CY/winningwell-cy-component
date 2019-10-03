@@ -3,36 +3,7 @@
   <div class="custom-code-sample">
     <v-card>
       <v-card-text>
-        <h2 class="animated slideInUp">Custom Code Sample</h2>
-        <p>Build custom lesson interactions using HTML, CSS, and Javascript</p>
-
-        <h3>How it works</h3>
-        <p>ConveYour Lessons can dynamically load <a target="_blank" href="https://vuejs.org/v2/guide/single-file-components.html">Vue.js Single File Components</a> that you host online. Your custom code will be able to talk to the lesson it resides in and vice versa.
-        </p>
-
-        <h3>Why would I use this?</h3>
-        <p>If you want to...</p>
-        <ul>
-            <li>build custom learner experiences and reports.</li>
-            <li>embed iframes and other 3rd party widgets.</li>
-        </ul>
-        <br>
-        <h3>Hosting the File (Github.com)</h3>
-        <p>GitHub Gist is a free service from GitHub that makes it really easy to create, edit, and host code files. By using a service like this to host your custom code, you can re-use your custom code in many lessons simply by dropping in the URL of your "gist" into the configuration of a custom code lesson item.</p>
-        <p>The HTML you are reading right now, is itself, custom code that is being imported into your Lesson
-          <b><a href="https://gist.githubusercontent.com/srhyne/71d8687e27ef5e5e088d6986bb434050/raw/lesson-custom-code.vue" target="_blank">via this URL</b></a>
-          This is the same URL that set in the "URL for custom code" field in this item's edit configuration.. <a href="https://gist.github.com/srhyne/71d8687e27ef5e5e088d6986bb434050" target="_blank">Here's the link to the gist's main page if you want to fork the sample.</a>
-
-        <h3>The Template</h3>
-        <p>The first tag in the above <b>lesson-custom-code.vue</b> file is the template. The template is where your HTML will go. It's important that your template only has ONE child component.
-        </p>
-
-        <h3>The Styles</h3>
-        <p>The second tag is the style tag. This tag is where you write your CSS styles. Not the scoped property in the above linked sample. This scopes the CSS to only applying to your custom code.</p>
-
-        <h3>The Script</h3>
-        <p>The script is where the magic happens. This is where you can deeply integrate your custom code with the lesson it resides in! <i style="font-weight: bold">Please review the comments in the sample linked above to understand the structure of the JavaScript code.</i></p>
-
+        
         <h5>The "ctx" prop</h5>
         <p>The ctx prop in the sample script above is a JavaScript object that provides your custom code a bunch of context about the learner taking the lesson and their progress, as well information about the lesson itself. Also, we include some organizational information as well. </p>
 
