@@ -74,6 +74,8 @@
     data(){
       return {
         ctxHidden : true,
+        trigger_name :'yo',
+        ctx:1,
         fullName : [
           this.ctx.learner.first_name,
           this.ctx.learner.first_name
