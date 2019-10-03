@@ -57,6 +57,7 @@
     data(){
       return {
         ctxHidden : true,
+        email:this.ctx.learner.email; 
         fullName : [
           this.ctx.learner.first_name,
           this.ctx.learner.first_name
