@@ -66,7 +66,7 @@
     created: function() {
         console.log('CTX Property');
         console.log('--------');
-        console.log(ctx);
+        console.log(this.ctx);
 
 
     },
