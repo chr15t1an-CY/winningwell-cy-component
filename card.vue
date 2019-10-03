@@ -3,36 +3,24 @@
   <div class="custom-code-sample">
     <v-card>
       <v-card-text>
-        <h2 class="animated slideInUp">Custom Code Sample</h2>
-        <p>Build custom lesson interactions using HTML, CSS, and Javascript</p>
 
-        <h3>How it works</h3>
-        <p>ConveYour Lessons can dynamically load <a target="_blank" href="https://vuejs.org/v2/guide/single-file-components.html">Vue.js Single File Components</a> that you host online. Your custom code will be able to talk to the lesson it resides in and vice versa.
-        </p>
+        <p> {{trigger_name}} Results!</p>
+        <p v-if="totalUserscore < 3">You probably experience lots of stress, bouncing back and forth between Gamer attempts to keep your job and frustration with your staff.</p>
+        <p v-else-if="totalUserscore == 3">You likely do try to achieve results, but with a high degree of frustration common to the User style. You may try to be liked, but it generally doesn't work.</p>
+        <p v-else-if="totalUserscore == 4 && numOfShadedAs < 1">You may identify with the Pleaser style, putting lots of effort into being liked and reacting to one crisis after anouther.</p>
+        <p v-else-if="totalUserscore == 4 && numOfShadedAs >= 1">You probably are a results-oriented manager with an opportunity to sustain your results as you connect with and invest in your people.</p>
+        <p v-else-if="totalUserscore == 5">You have Winning Well management instincts that likely get buried in day-to-day stress and personal frustrations.</p>
+        <p v-else-if="totalUserscore == 6 && numOfShadedAs <= 2">You may identify with the Pleaser style, putting lots of effort into being liked and reacting to one crisis after anouther with some focus on results.</p>
+        <p v-else-if="totalUserscore == 6 && numOfShadedAs >= 3">You likely have Winning Well instincts and a focus on results.</p>
+        <p v-else-if="totalUserscore == 7">You likely have Winning Well instincts and focus on relation-ships. </p>
+        <p v-else-if="totalUserscore == 8">You likely have strong Winning Well practices and may flex easily between results and relationships.</p>
+        <p v-else-if="totalUserscore > 8">You likely have strong Winning Well practices and emphasize relationships in your day-today work. </p>
+        <div v-else>
+          Hmm. This is puzzling. I had trouble calculating your score. It could be an error on my end.
+        </div>
 
-        <h3>Why would I use this?</h3>
-        <p>If you want to...</p>
-        <ul>
-            <li>build custom learner experiences and reports.</li>
-            <li>embed iframes and other 3rd party widgets.</li>
-        </ul>
-        <br>
-        <h3>Hosting the File (Github.com)</h3>
-        <p>GitHub Gist is a free service from GitHub that makes it really easy to create, edit, and host code files. By using a service like this to host your custom code, you can re-use your custom code in many lessons simply by dropping in the URL of your "gist" into the configuration of a custom code lesson item.</p>
-        <p>The HTML you are reading right now, is itself, custom code that is being imported into your Lesson
-          <b><a href="https://gist.githubusercontent.com/srhyne/71d8687e27ef5e5e088d6986bb434050/raw/lesson-custom-code.vue" target="_blank">via this URL</b></a>
-          This is the same URL that set in the "URL for custom code" field in this item's edit configuration.. <a href="https://gist.github.com/srhyne/71d8687e27ef5e5e088d6986bb434050" target="_blank">Here's the link to the gist's main page if you want to fork the sample.</a>
 
-        <h3>The Template</h3>
-        <p>The first tag in the above <b>lesson-custom-code.vue</b> file is the template. The template is where your HTML will go. It's important that your template only has ONE child component.
-        </p>
-
-        <h3>The Styles</h3>
-        <p>The second tag is the style tag. This tag is where you write your CSS styles. Not the scoped property in the above linked sample. This scopes the CSS to only applying to your custom code.</p>
-
-        <h3>The Script</h3>
-        <p>The script is where the magic happens. This is where you can deeply integrate your custom code with the lesson it resides in! <i style="font-weight: bold">Please review the comments in the sample linked above to understand the structure of the JavaScript code.</i></p>
-
+        <hr/>
         <h5>The "ctx" prop</h5>
         <p>The ctx prop in the sample script above is a JavaScript object that provides your custom code a bunch of context about the learner taking the lesson and their progress, as well information about the lesson itself. Also, we include some organizational information as well. </p>
 
@@ -67,6 +55,25 @@
 <!-- lang='es6' is important. Please include -->
 <script lang='es6'>
 
+(function(g) {
+    var ns, script, first;
+    ns = 'Conveyour';
+    g[ns] = g[ns] || {};
+    g[ns].config = {
+      domain: '',
+      appkey: '',
+      token: ''
+    };
+    g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
+    g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
+    script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
+    first = document.getElementsByTagName('script')[0];
+    first.parentNode.insertBefore(script, first);
+  })(window);
+
   //your code should be exported using the module.exports object
   module.exports = {
 
@@ -89,7 +96,11 @@
         fullName : [
           this.ctx.learner.first_name,
           this.ctx.learner.first_name
-        ].join(' ')
+        ].join(' '),
+        trigger_name : ctx.trigger.name,
+        finished : ctx.completion_state.finished,
+        totalScore: 0,
+        userEmail:'',
       }
     },
 
