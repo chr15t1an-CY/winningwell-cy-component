@@ -63,6 +63,13 @@
         ].join(' ')
       }
     },
+    created: function() {
+        console.log('CTX Property');
+        console.log('--------');
+        console.log(ctx);
+
+
+    },
 
     //this attaches the parent lesson ui components to your custom code
     //so that you can use built in lesson vue components in YOUR code!
