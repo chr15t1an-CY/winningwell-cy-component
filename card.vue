@@ -57,7 +57,7 @@
     data(){
       return {
         ctxHidden : true,
-        email:this.ctx.learner.email; 
+        email:this.ctx.learner.email;
         fullName : [
           this.ctx.learner.first_name,
           this.ctx.learner.first_name
@@ -65,7 +65,7 @@
       }
     },
     created: function() {
-        console.log('CTX Property');
+        console.log('.CTX Property');
         console.log('--------');
         console.log(this.ctx);
 
