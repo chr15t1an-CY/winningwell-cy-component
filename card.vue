@@ -3,7 +3,7 @@
   <div class="custom-code-sample">
     <v-card>
       <v-card-text>
-        <h1>Test.</h1>
+        <h1>Test</h1>
         <h5>The "ctx" prop</h5>
         <p>The ctx prop in the sample script above is a JavaScript object that provides your custom code a bunch of context about the learner taking the lesson and their progress, as well information about the lesson itself. Also, we include some organizational information as well. </p>
 
