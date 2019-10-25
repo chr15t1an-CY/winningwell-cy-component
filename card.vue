@@ -54,26 +54,6 @@
 <script lang='es6'>
 
 //
-
-(function(g) {
-      var ns, script, first;
-      ns = 'Conveyour';
-      g[ns] = g[ns] || {};
-      g[ns].config = {
-        domain: ctx.lesson.metadata['domain'],
-        appkey: ctx.lesson.metadata['appkey'],
-        token: ctx.lesson.metadata['token']
-      };
-      g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
-      g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
-      script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.async = true;
-      script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
-      first = document.getElementsByTagName('script')[0];
-      first.parentNode.insertBefore(script, first);
-    })(window);
-
   //your code should be exported using the module.exports object
   module.exports = {
 
@@ -92,6 +72,7 @@
     //return here can be used in your templates like this Hi {{fullName}}
     data(){
       return {
+        ctxHidden : true,
         trigger_name: this.ctx.lesson.name,
         email:this.ctx.learner.email,
         totalUserscore:8,
@@ -156,6 +137,24 @@
     //DO NOT REMOVE. This emits to the parent lesson that your custom code is fully loaded
     mounted(){
       this.$emit('loaded')
+      (function(g) {
+            var ns, script, first;
+            ns = 'Conveyour';
+            g[ns] = g[ns] || {};
+            g[ns].config = {
+              domain: this.ctx.lesson.metadata['domain'],
+              appkey: this.ctx.lesson.metadata['appkey'],
+              token:  this.ctx.lesson.metadata['token']
+            };
+            g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
+            g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
+            script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
+            first = document.getElementsByTagName('script')[0];
+            first.parentNode.insertBefore(script, first);
+          })(window);
       // var data = {};
       data['wwscore'] = this.totalUserscore;
            Conveyour.identify(this.email, data).done(function(data){
