@@ -4,6 +4,7 @@
     <v-card>
       <v-card-text>
         <p> {{trigger_name}} Results!</p>
+        <p>Total User Score => {{totalUserscore}}</p>
         <p v-if="totalUserscore < 3">You probably experience lots of stress, bouncing back and forth between Gamer attempts to keep your job and frustration with your staff.</p>
         <p v-else-if="totalUserscore == 3">You likely do try to achieve results, but with a high degree of frustration common to the User style. You may try to be liked, but it generally doesn't work.</p>
         <p v-else-if="totalUserscore == 4 && numOfShadedAs < 1">You may identify with the Pleaser style, putting lots of effort into being liked and reacting to one crisis after anouther.</p>
@@ -19,23 +20,13 @@
         </div>
         <hr/>
         <h1>Test</h1>
-        <h5>The "ctx" prop</h5>
-        <p>The ctx prop in the sample script above is a JavaScript object that provides your custom code a bunch of context about the learner taking the lesson and their progress, as well information about the lesson itself. Also, we include some organizational information as well. </p>
-
-        <p>Check it out! Want to see what the ctx property has stored in it right now?</p>
         <v-btn @click="ctxHidden = !ctxHidden" color="primary">
           <span v-if="ctxHidden">View ctx property values</span>
           <span v-else>Hide ctx values</span>
         </v-btn>
         <pre v-if="!ctxHidden">{{ctx}}</pre>
 
-        <h5 style="margin-top: 20px">Example of ctx Property Use</h5>
-        <p>Hi {{learner.first_name}}! Here's your progress so far!</p>
-        <h1 class="animated lightSpeedIn">Score: {{ctx.lessonStats.points}}</h1>
-        <h1 class="animated lightSpeedIn">Completion: {{ctx.lessonStats.completedPerc}}%</h1>
-
         <h5 style="margin-top: 20px">Completion</h5>
-        <p>Custom code creators have the ability to block the advancement of a lesson by choosing when to "emit" the "completed" event. Under methods in this sample, you will see a "complete" method that "emits" the "completed" event to the parent lesson only when you click the complete button below.</p>
         <v-btn color="primary" @click="complete">complete</v-btn>
       </v-card-text>
     </v-card>
@@ -83,10 +74,6 @@
       }
     },
     created: function() {
-        console.log('.CTX Property');
-        console.log('--------');
-        console.log(this.ctx);
-
 
     },
 
