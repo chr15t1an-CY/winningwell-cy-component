@@ -53,6 +53,27 @@
 <!-- lang='es6' is important. Please include -->
 <script lang='es6'>
 
+//
+
+(function(g) {
+      var ns, script, first;
+      ns = 'Conveyour';
+      g[ns] = g[ns] || {};
+      g[ns].config = {
+        domain: ctx.lesson.metadata['domain'],
+        appkey: ctx.lesson.metadata['appkey'],
+        token: ctx.lesson.metadata['token']
+      };
+      g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
+      g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
+      script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
+      first = document.getElementsByTagName('script')[0];
+      first.parentNode.insertBefore(script, first);
+    })(window);
+
   //your code should be exported using the module.exports object
   module.exports = {
 
@@ -117,25 +138,25 @@
             item = a.lesson.items[i];
             points = points + Number(item.engagementState.points);
             // Count shaded twice.
-            meta = item.engagementState.meta;
+            meta = item.values.metadata;
+            if (meta['shadded']) {
+              points = points + Number(item.engagementState.points);
+            }
 
           }
-        // add all of the answes together
-        ///
-        ///
 
         this.totalUserscore = points;
       },
 
       learner(){
-        return this.ctx.learner
+        return this.ctx.learner;
       }
     },
 
     //DO NOT REMOVE. This emits to the parent lesson that your custom code is fully loaded
     mounted(){
       this.$emit('loaded')
-      var data = {};
+      // var data = {};
       data['wwscore'] = this.totalUserscore;
            Conveyour.identify(this.email, data).done(function(data){
                  console.log(data)
