@@ -107,7 +107,7 @@
             points = points + Number(item.engagementState.points);
             // Count shaded twice.
             meta = item.values.metadata;
-            if (meta['shadded']) {
+            if (meta['shaded']) {
               points = points + Number(item.engagementState.points);
             }
 
