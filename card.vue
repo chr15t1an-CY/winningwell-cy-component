@@ -85,6 +85,15 @@
       //the power to signal when the learner is completed you can control the learner's
       //ability to progress through the rest of the lesson!
       complete(){
+
+        console.log('try to log');
+        var data = {};
+        data['wwscore1'] = Number(this.totalUserscore);
+        Conveyour.identify(this.email, data).done(function(data){
+                   console.log(data)
+                 });
+
+
         this.$emit('completed');
       }
     },
@@ -108,15 +117,15 @@
 
 
 
-        console.log('identify');
-        var emaiL = this.email;
-        var data = {};
-        data['wwscore1'] = Number(totalpoints);
+        // console.log('identify');
+        // var emaiL = this.email;
+        // var data = {};
+        // data['wwscore1'] = Number(totalpoints);
 
         // setTimeout(function(){
-        Conveyour.identify(emaiL, data).done(function(data){
-                   console.log(data)
-                 });
+        // Conveyour.identify(emaiL, data).done(function(data){
+        //            console.log(data)
+        //          });
 
 
 
@@ -166,7 +175,7 @@
       var callback = function(){
   // Handler when the DOM is fully loaded
 
-      console.log('ran');
+      console.log('linked js');
       (function(g) {
             var ns, script, first;
             ns = 'Conveyour';
