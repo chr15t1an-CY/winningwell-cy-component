@@ -66,7 +66,10 @@
     },
     created: function() {
 
-
+      // var zzx = this.ctx;
+      // return zzx;
+      console.log('CTX');
+      console.log(this.ctx);
 
     },
 
@@ -86,15 +89,17 @@
       //ability to progress through the rest of the lesson!
       complete(){
 
+        this.$emit('completed');
+
         console.log('try to log');
         var data = {};
         data['wwscore1'] = Number(this.totalUserscore);
-        Conveyour.identify(this.email, data).done(function(data){
-                   console.log(data)
-                 });
+        // Conveyour.identify(this.email, data).done(function(data){
+        //            console.log(data)
+        //          });
 
+        this.api.updateLearner({ wwscore : 50 })
 
-        this.$emit('completed');
       }
     },
 
@@ -162,48 +167,45 @@
 
       // console.log(this.domain);
 
-
-      var domaiN = this.domain;
-      var appkeY = this.appkey;
-      var tokeN = this.token;
+      //
+      // var domaiN = this.domain;
+      // var appkeY = this.appkey;
+      // var tokeN = this.token;
       // var totalUserscorE = this.totalUserscore;
       // var emaiL = this.email;
 
-      document.readyState
+  //     var callback = function(){
+  // // Handler when the DOM is fully loaded
+  //
+  //     console.log('linked js');
+  //     (function(g) {
+  //           var ns, script, first;
+  //           ns = 'Conveyour';
+  //           g[ns] = g[ns] || {};
+  //           g[ns].config = {
+  //             domain: domaiN,//this.ctx.lesson.metadata['domain'],
+  //             appkey: appkeY,//this.ctx.lesson.metadata['appkey'],
+  //             token: tokeN,// this.ctx.lesson.metadata['token']
+  //           };
+  //           g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
+  //           g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
+  //           script = document.createElement('script');
+  //           script.type = 'text/javascript';
+  //           script.async = true;
+  //           // script.async = false;
+  //           script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
+  //           first = document.getElementsByTagName('script')[0];
+  //           first.parentNode.insertBefore(script, first);
+  //         })(window);
+  //
+  //       };
+  //       if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+  //         callback();
+  //       } else {
+  //         document.addEventListener("DOMContentLoaded", callback);
+  //       }
 
-
-      var callback = function(){
-  // Handler when the DOM is fully loaded
-
-      console.log('linked js');
-      (function(g) {
-            var ns, script, first;
-            ns = 'Conveyour';
-            g[ns] = g[ns] || {};
-            g[ns].config = {
-              domain: domaiN,//this.ctx.lesson.metadata['domain'],
-              appkey: appkeY,//this.ctx.lesson.metadata['appkey'],
-              token: tokeN,// this.ctx.lesson.metadata['token']
-            };
-            g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
-            g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
-            script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.async = true;
-            // script.async = false;
-            script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
-            first = document.getElementsByTagName('script')[0];
-            first.parentNode.insertBefore(script, first);
-          })(window);
-
-        };
-        if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
-          callback();
-        } else {
-          document.addEventListener("DOMContentLoaded", callback);
-        }
-
-
+      // })
     },
 
   }
