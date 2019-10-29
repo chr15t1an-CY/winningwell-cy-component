@@ -81,7 +81,7 @@
         //Emit compleated.
         this.$emit('completed');
         //Pass the score to the users contact record.
-        this.api.updateLearner({ wwscore1 : Number(this.totalUserscore) });
+        this.api.updateLearner({ wwscore : Number(this.totalUserscore) });
       }
     },
 
