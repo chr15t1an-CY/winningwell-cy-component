@@ -59,18 +59,9 @@
         trigger_name: this.ctx.lesson.name,
         email:this.ctx.learner.email,
         score:0,
-        domain:this.ctx.lesson.metadata[0].value,//this.ctx.lesson.metadata['domain'],
-        appkey:this.ctx.lesson.metadata[1].value,//this.ctx.lesson.metadata['appkey'],
-        token:this.ctx.lesson.metadata[2].value,//this.ctx.lesson.metadata['token'],
       }
     },
     created: function() {
-
-      // var zzx = this.ctx;
-      // return zzx;
-      console.log('CTX');
-      console.log(this.ctx);
-
     },
 
     //this attaches the parent lesson ui components to your custom code
@@ -88,18 +79,10 @@
       //the power to signal when the learner is completed you can control the learner's
       //ability to progress through the rest of the lesson!
       complete(){
-
+        //Emit compleated.
         this.$emit('completed');
-
-        console.log('try to log');
-        var data = {};
-        data['wwscore1'] = Number(this.totalUserscore);
-        // Conveyour.identify(this.email, data).done(function(data){
-        //            console.log(data)
-        //          });
-
-        this.api.updateLearner({ wwscore : 50 })
-
+        //Pass the score to the users contact record.
+        this.api.updateLearner({ wwscore1 : Number(this.totalUserscore) });
       }
     },
 
@@ -108,52 +91,41 @@
         return this.ctx.learner;
       },
       totalUserscore(){
-        // store values in var
+        // store the user value
         var a = this.ctx;
+        // Insure points is an integer.
         var points = Number(0);
+        //Grab Shadded A's (They are added twice.)
         var numOfShadedAs = this.numOfShadedAs;
+        // Loop through lessons to compleate points.
         for (var i = 0; i < a.lesson.items.length; i++) {
-            // console.log(a.lesson.items[i]);
             var item = a.lesson.items[i];
             points = points + Number(item.engagementState.points);
           }
+        //Sum Points.
         var totalpoints = points+numOfShadedAs;
+        //Set as score.
         self.score = totalpoints;
-
-
-
-        // console.log('identify');
-        // var emaiL = this.email;
-        // var data = {};
-        // data['wwscore1'] = Number(totalpoints);
-
-        // setTimeout(function(){
-        // Conveyour.identify(emaiL, data).done(function(data){
-        //            console.log(data)
-        //          });
-
-
-
-
 
         return totalpoints;
       },
       numOfShadedAs(){
+        // store the user value
         var a = this.ctx;
+        // Insure points is an integer.
         var points = Number(0);
+        // Insure points is an integer.
         var numOfShadedAs = Number(0);
-
+        //Loop through and count shaded.
         for (var i = 0; i < a.lesson.items.length; i++) {
-            // console.log(a.lesson.items[i]);
             var item = a.lesson.items[i];
-            // points = points + Number(item.engagementState.points);
-            // Count shaded twice.
             var meta = item.values.metadata;
             if (meta['shaded']) {
               numOfShadedAs = numOfShadedAs + Number(item.engagementState.points);
             }
 
           }
+        //Return Shaded A's  
         return numOfShadedAs;
       },
     },
@@ -162,50 +134,6 @@
     mounted(){
       this.$emit('loaded');
 
-
-      // var jQuery = $;
-
-      // console.log(this.domain);
-
-      //
-      // var domaiN = this.domain;
-      // var appkeY = this.appkey;
-      // var tokeN = this.token;
-      // var totalUserscorE = this.totalUserscore;
-      // var emaiL = this.email;
-
-  //     var callback = function(){
-  // // Handler when the DOM is fully loaded
-  //
-  //     console.log('linked js');
-  //     (function(g) {
-  //           var ns, script, first;
-  //           ns = 'Conveyour';
-  //           g[ns] = g[ns] || {};
-  //           g[ns].config = {
-  //             domain: domaiN,//this.ctx.lesson.metadata['domain'],
-  //             appkey: appkeY,//this.ctx.lesson.metadata['appkey'],
-  //             token: tokeN,// this.ctx.lesson.metadata['token']
-  //           };
-  //           g[ns].identify = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'identify', as: arguments}); };
-  //           g[ns].track = function() { g[ns].q = g[ns].q || []; g[ns].q.push({m: 'track', as: arguments}); };
-  //           script = document.createElement('script');
-  //           script.type = 'text/javascript';
-  //           script.async = true;
-  //           // script.async = false;
-  //           script.src = 'https://app.conveyour.com/js/cdn/analytics.v1.min.js';
-  //           first = document.getElementsByTagName('script')[0];
-  //           first.parentNode.insertBefore(script, first);
-  //         })(window);
-  //
-  //       };
-  //       if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
-  //         callback();
-  //       } else {
-  //         document.addEventListener("DOMContentLoaded", callback);
-  //       }
-
-      // })
     },
 
   }
