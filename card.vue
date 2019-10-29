@@ -8,14 +8,14 @@
 
         <p v-if="totalUserscore < 3">You probably experience lots of stress, bouncing back and forth between Gamer attempts to keep your job and frustration with your staff.</p>
         <p v-else-if="totalUserscore == 3">You likely do try to achieve results, but with a high degree of frustration common to the User style. You may try to be liked, but it generally doesn't work.</p>
-        <p v-else-if="totalUserscore == 4 && numOfShadedAs < 1">You may identify with the Pleaser style, putting lots of effort into being liked and reacting to one crisis after anouther.</p>
+        <p v-else-if="totalUserscore == 4 && numOfShadedAs < 1">You may identify with the Pleaser style, putting lots of effort into being liked and reacting to one crisis after another.</p>
         <p v-else-if="totalUserscore == 4 && numOfShadedAs >= 1">You probably are a results-oriented manager with an opportunity to sustain your results as you connect with and invest in your people.</p>
         <p v-else-if="totalUserscore == 5">You have Winning Well management instincts that likely get buried in day-to-day stress and personal frustrations.</p>
-        <p v-else-if="totalUserscore == 6 && numOfShadedAs <= 2">You may identify with the Pleaser style, putting lots of effort into being liked and reacting to one crisis after anouther with some focus on results.</p>
+        <p v-else-if="totalUserscore == 6 && numOfShadedAs <= 2">You may identify with the Pleaser style, putting lots of effort into being liked and reacting to one crisis after another with some focus on results.</p>
         <p v-else-if="totalUserscore == 6 && numOfShadedAs >= 3">You likely have Winning Well instincts and a focus on results.</p>
-        <p v-else-if="totalUserscore == 7">You likely have Winning Well instincts and focus on relation-ships. </p>
+        <p v-else-if="totalUserscore == 7">You likely have Winning Well instincts and focus on relationships.</p>
         <p v-else-if="totalUserscore == 8">You likely have strong Winning Well practices and may flex easily between results and relationships.</p>
-        <p v-else-if="totalUserscore > 8">You likely have strong Winning Well practices and emphasize relationships in your day-today work. </p>
+        <p v-else-if="totalUserscore > 8">You likely have strong Winning Well practices and emphasize relationships in your day-to-day work.</p>
         <div v-else>
           Hmm. This is puzzling. I had trouble calculating your score. It could be an error on my end.
         </div>
