@@ -4,8 +4,7 @@
     <v-card>
       <v-card-text>
         <h2> {{trigger_name}} Results!</h2>
-        <p>Total Score => {{totalUserscore}}</p>
-        <p>Number of Shaded A's => {{numOfShadedAs}}</p>
+        <p>Total Score {{totalUserscore}}</p>
 
         <p v-if="totalUserscore < 3">You probably experience lots of stress, bouncing back and forth between Gamer attempts to keep your job and frustration with your staff.</p>
         <p v-else-if="totalUserscore == 3">You likely do try to achieve results, but with a high degree of frustration common to the User style. You may try to be liked, but it generally doesn't work.</p>
@@ -125,7 +124,7 @@
             }
 
           }
-        //Return Shaded A's  
+        //Return Shaded A's
         return numOfShadedAs;
       },
     },
